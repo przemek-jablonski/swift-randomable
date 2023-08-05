@@ -9,17 +9,14 @@
 /* Begin PBXBuildFile section */
 		1FC0F3ED2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0F3EC2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift */; };
 		1FC0F3EF2A7E7B76007E7A22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */; };
-		1FC0F3F12A7E7B77007E7A22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC0F3F02A7E7B77007E7A22 /* Assets.xcassets */; };
-		1FC0F3F52A7E7B77007E7A22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC0F3F42A7E7B77007E7A22 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1FC0F3E92A7E7B76007E7A22 /* swift-randomable-playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-randomable-playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC0F3EC2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_randomable_playgroundApp.swift; sourceTree = "<group>"; };
 		1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1FC0F3F02A7E7B77007E7A22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FC0F3F22A7E7B77007E7A22 /* swift_randomable_playground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = swift_randomable_playground.entitlements; sourceTree = "<group>"; };
-		1FC0F3F42A7E7B77007E7A22 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1FC3378E2A7E7DE600225AF4 /* swift-randomable */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-randomable"; path = "../swift-randomable"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +33,7 @@
 		1FC0F3E02A7E7B76007E7A22 = {
 			isa = PBXGroup;
 			children = (
+				1FC3378E2A7E7DE600225AF4 /* swift-randomable */,
 				1FC0F3EB2A7E7B76007E7A22 /* swift-randomable-playground */,
 				1FC0F3EA2A7E7B76007E7A22 /* Products */,
 			);
@@ -54,19 +52,9 @@
 			children = (
 				1FC0F3EC2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift */,
 				1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */,
-				1FC0F3F02A7E7B77007E7A22 /* Assets.xcassets */,
 				1FC0F3F22A7E7B77007E7A22 /* swift_randomable_playground.entitlements */,
-				1FC0F3F32A7E7B77007E7A22 /* Preview Content */,
 			);
 			path = "swift-randomable-playground";
-			sourceTree = "<group>";
-		};
-		1FC0F3F32A7E7B77007E7A22 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1FC0F3F42A7E7B77007E7A22 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,8 +115,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC0F3F52A7E7B77007E7A22 /* Preview Assets.xcassets in Resources */,
-				1FC0F3F12A7E7B77007E7A22 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +250,6 @@
 				CODE_SIGN_ENTITLEMENTS = "swift-randomable-playground/swift_randomable_playground.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"swift-randomable-playground/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -300,7 +285,6 @@
 				CODE_SIGN_ENTITLEMENTS = "swift-randomable-playground/swift_randomable_playground.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"swift-randomable-playground/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
