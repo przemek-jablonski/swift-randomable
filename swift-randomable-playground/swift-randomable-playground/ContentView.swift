@@ -1,19 +1,19 @@
 import SwiftUI
 
 struct ContentView: View {
-  var body: some View {
-    VStack {
-      Image(systemName: "shippingbox")
-        .imageScale(.large)
-        .foregroundColor(.accentColor)
-      Text("swift-randomable-playground")
+    var body: some View {
+        VStack {
+            Image(systemName: "shippingbox")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
+            Text("swift-randomable-playground")
+        }
+        .padding()
     }
-    .padding()
-  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-  }
+    static var previews: some View {
+        ContentView()
+    }
 }

@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1FC083622A7E90B400DA0790 /* swift-randomable in Frameworks */ = {isa = PBXBuildFile; productRef = 1FC083612A7E90B400DA0790 /* swift-randomable */; };
-		1FC0F3ED2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0F3EC2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift */; };
+		1FC0F3ED2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0F3EC2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift */; };
 		1FC0F3EF2A7E7B76007E7A22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1FC083632A7E95AC00DA0790 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = "swift-randomable-playground/.swiftlint.yml"; sourceTree = "<group>"; };
 		1FC0F3E92A7E7B76007E7A22 /* swift-randomable-playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-randomable-playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FC0F3EC2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_randomable_playgroundApp.swift; sourceTree = "<group>"; };
+		1FC0F3EC2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRandomablePlaygroundApp.swift; sourceTree = "<group>"; };
 		1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1FC0F3F22A7E7B77007E7A22 /* swift_randomable_playground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = swift_randomable_playground.entitlements; sourceTree = "<group>"; };
 		1FC3378E2A7E7DE600225AF4 /* swift-randomable */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-randomable"; path = "../swift-randomable"; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		1FC0F3E02A7E7B76007E7A22 = {
 			isa = PBXGroup;
 			children = (
+				1FC083632A7E95AC00DA0790 /* .swiftlint.yml */,
 				1FC3378E2A7E7DE600225AF4 /* swift-randomable */,
 				1FC0F3EB2A7E7B76007E7A22 /* swift-randomable-playground */,
 				1FC0F3EA2A7E7B76007E7A22 /* Products */,
@@ -60,7 +62,7 @@
 		1FC0F3EB2A7E7B76007E7A22 /* swift-randomable-playground */ = {
 			isa = PBXGroup;
 			children = (
-				1FC0F3EC2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift */,
+				1FC0F3EC2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift */,
 				1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */,
 				1FC0F3F22A7E7B77007E7A22 /* swift_randomable_playground.entitlements */,
 			);
@@ -74,6 +76,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FC0F3F82A7E7B77007E7A22 /* Build configuration list for PBXNativeTarget "swift-randomable-playground" */;
 			buildPhases = (
+				1FC083642A7E963700DA0790 /* SwiftLint */,
 				1FC0F3E52A7E7B76007E7A22 /* Sources */,
 				1FC0F3E62A7E7B76007E7A22 /* Frameworks */,
 				1FC0F3E72A7E7B76007E7A22 /* Resources */,
@@ -133,13 +136,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1FC083642A7E963700DA0790 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nswiftlint lint --autocorrect --format && swiftlint\ncd ../.. swiftlint lint --autocorrect --format && swiftlint\n\n#export PATH=\"$PATH:/opt/homebrew/bin\"\n\n#swiftlint analyze --compiler-log-path xcodebuild.log\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1FC0F3E52A7E7B76007E7A22 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1FC0F3EF2A7E7B76007E7A22 /* ContentView.swift in Sources */,
-				1FC0F3ED2A7E7B76007E7A22 /* swift_randomable_playgroundApp.swift in Sources */,
+				1FC0F3ED2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,7 +17,7 @@ extension Float: Randomable {
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
     .random(
-      in: Int.min.float...Int.max.float,
+      in: Float(Int.min)...Float(Int.max),
       using: &randomNumberGenerator
     )
   }
@@ -28,7 +28,7 @@ extension Double: Randomable {
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
     .random(
-      in: Int.min.double...Int.max.double,
+      in: Double(Int.min)...Double(Int.max),
       using: &randomNumberGenerator
     )
   }
@@ -53,14 +53,19 @@ extension Character: Randomable {
   }
 }
 
+private let oneYearTimeInterval = 31536000
 extension Date: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    Double.random(
-      in: Date().byAdding(.year, -10).timeIntervalSince1970..<Date().byAdding(.year, 1).timeIntervalSince1970,
-      using: &randomNumberGenerator
-    ).date
+    return Date(timeIntervalSince1970:
+                  Double.random(
+                    in:
+                      Date().timeIntervalSince1970 - oneYearTimeInterval * 2 ..<
+                    Date().timeIntervalSince1970 + oneYearTimeInterval * 0.2,
+                    using: &randomNumberGenerator
+                  )
+    )
   }
 }
 
@@ -86,13 +91,14 @@ extension URL: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> URL {
-    [
+    URL(string: [
       "https://google.com",
       "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "https://picsum.photos/id/870/200/300?grayscale&blur=2",
       "https://i.redd.it/vwlgciqshjp41.jpg",
       "https://en.wikipedia.org/wiki/Lorem_ipsum"
-    ].random().url!
+    ].random()
+    )!
   }
   // swiftlint:enable force_unwrapping
 }
@@ -102,7 +108,7 @@ extension Data: Randomable {
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Data {
     Data(
-      repeating: Int.random(&randomNumberGenerator).uInt8,
+      repeating: UInt8(Int.random(&randomNumberGenerator)),
       count: (0...10000).randomElement() ?? 0
     )
   }
@@ -118,7 +124,7 @@ extension Optional: Randomable where Wrapped: Randomable {
       &randomNumberGenerator
     )
   }
-
+  
   internal static func random(
     nilToValueRatio: Float,
     _ randomNumberGenerator: inout RandomNumberGenerator
@@ -147,7 +153,7 @@ extension Set: Randomable where Element: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    Element.randoms(&randomNumberGenerator).set
+    Set(Element.randoms(&randomNumberGenerator))
   }
 }
 
@@ -156,7 +162,7 @@ extension Dictionary: Randomable where Key: Randomable, Value: Randomable {
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {Dictionary(
     uniqueKeysWithValues: zip(
-      Key.randoms(&randomNumberGenerator).set,
+      Set(Key.randoms(&randomNumberGenerator)),
       Value.randoms(&randomNumberGenerator)
     )
   )
