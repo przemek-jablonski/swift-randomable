@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
   name: "swift-randomable",
+  platforms: [
+    .iOS(.v13),
+    .watchOS(.v6),
+    .tvOS(.v13),
+    .macOS(.v11)
+  ],
   products: [
     .library(
       name: "swift-randomable",
