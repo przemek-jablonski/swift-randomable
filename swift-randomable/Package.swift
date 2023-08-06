@@ -13,20 +13,21 @@ internal let package = Package(
   ],
   products: [
     .library(
-      name: "swift-randomable",
-      targets: ["swift-randomable"]
+      name: "Randomable",
+      targets: ["Randomable"]
     )
   ],
   dependencies: [
   ],
   targets: [
     .target(
-      name: "swift-randomable",
+      name: "Randomable",
       dependencies: []
-    ),
-    .testTarget(
-      name: "swift-randomable-tests",
-      dependencies: ["swift-randomable"]
     )
+//    ,
+//    .testTarget(
+//      name: "Randomable-tests",
+//      dependencies: ["Randomable"]
+//    )
   ]
 )
