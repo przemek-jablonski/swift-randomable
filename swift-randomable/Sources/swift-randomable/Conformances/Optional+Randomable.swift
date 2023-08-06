@@ -4,17 +4,18 @@ extension Optional: Randomable where Wrapped: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    random(
-      nilToValueRatio: 0.33,
+    let nilToValueRatio = 0.33
+    return random(
+      nilToValueRatio,
       &randomNumberGenerator
     )
   }
 
   internal static func random(
-    nilToValueRatio: Float,
+    _ nilToValueRatio: Double,
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    if Float.random(
+    if Double.random(
       in: 0...1,
       using: &randomNumberGenerator
     ) > nilToValueRatio {

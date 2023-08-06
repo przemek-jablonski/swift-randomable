@@ -13,7 +13,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1FC083632A7E95AC00DA0790 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = "swift-randomable-playground/.swiftlint.yml"; sourceTree = "<group>"; };
+		1FC083652A7FA99400DA0790 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		1FC0F3E92A7E7B76007E7A22 /* swift-randomable-playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-randomable-playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC0F3EC2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRandomablePlaygroundApp.swift; sourceTree = "<group>"; };
 		1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		1FC0F3E02A7E7B76007E7A22 = {
 			isa = PBXGroup;
 			children = (
-				1FC083632A7E95AC00DA0790 /* .swiftlint.yml */,
+				1FC083652A7FA99400DA0790 /* .swiftlint.yml */,
 				1FC3378E2A7E7DE600225AF4 /* swift-randomable */,
 				1FC0F3EB2A7E7B76007E7A22 /* swift-randomable-playground */,
 				1FC0F3EA2A7E7B76007E7A22 /* Products */,

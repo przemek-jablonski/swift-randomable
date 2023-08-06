@@ -1,5 +1,5 @@
 /**
- Signifies ability to quickly generate random/mock instances of given class for realtime mocking.
+ Signifies ability of generating random/mock instances of the conforming types.
  */
 public protocol RandomableCollection: Collection where Element: Randomable {
   /**

@@ -53,16 +53,20 @@ extension Character: Randomable {
   }
 }
 
-private let oneYearTimestamp = Double(31536000)
+private let oneYearTimestamp = 31536000
 extension Date: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
     let currentTimestamp = Date().timeIntervalSince1970
+    let lowerRandomBoundMultiplier = -2
+    let upperRandomBoundMultiplier = 0.2
     return Date(
       timeIntervalSince1970:
         Double.random(
-          in: currentTimestamp + oneYearTimestamp * Double(-2) ..< currentTimestamp + oneYearTimestamp * Double(0.2),
+          in:
+            (currentTimestamp + Double(oneYearTimestamp) * Double(lowerRandomBoundMultiplier)) ..<
+          (currentTimestamp + Double(oneYearTimestamp) * Double(upperRandomBoundMultiplier)),
           using: &randomNumberGenerator
         )
     )
@@ -85,6 +89,7 @@ extension Bool: Randomable {
   }
 }
 
+// swiftlint:disable no_magic_numbers
 extension Data: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
@@ -95,6 +100,7 @@ extension Data: Randomable {
     )
   }
 }
+// swiftlint:enable no_magic_numbers
 
 extension Locale: Randomable {
   // swiftlint:disable force_unwrapping

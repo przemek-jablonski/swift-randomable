@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-let package = Package(
+internal let package = Package(
   name: "swift-randomable",
   platforms: [
     .iOS(.v13),
