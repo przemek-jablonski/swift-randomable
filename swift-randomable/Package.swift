@@ -3,13 +3,19 @@
 
 import PackageDescription
 
-let package = Package(
+internal let package = Package(
   name: "swift-randomable",
+  platforms: [
+    .iOS(.v13),
+    .watchOS(.v6),
+    .tvOS(.v13),
+    .macOS(.v11)
+  ],
   products: [
     .library(
       name: "swift-randomable",
       targets: ["swift-randomable"]
-    ),
+    )
   ],
   dependencies: [
   ],
@@ -21,6 +27,6 @@ let package = Package(
     .testTarget(
       name: "swift-randomable-tests",
       dependencies: ["swift-randomable"]
-    ),
+    )
   ]
 )
