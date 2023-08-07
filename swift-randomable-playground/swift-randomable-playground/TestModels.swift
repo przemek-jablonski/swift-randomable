@@ -1,3 +1,4 @@
+// swiftlint:disable file_types_order
 import Randomable
 
 internal struct TestModelA: Identifiable {
@@ -21,7 +22,7 @@ internal struct TestModelC: Hashable & Identifiable {
 }
 
 extension TestModelA: Randomable {
-    static func random(
+    internal static func random(
         _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
         self.init(
@@ -33,7 +34,7 @@ extension TestModelA: Randomable {
 }
 
 extension TestModelB: Randomable {
-    static func random(
+    internal static func random(
         _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
         self.init(
@@ -45,7 +46,7 @@ extension TestModelB: Randomable {
 }
 
 extension TestModelC: Randomable {
-    static func random(
+    internal static func random(
         _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
         self.init(
@@ -55,3 +56,5 @@ extension TestModelC: Randomable {
         )
     }
 }
+
+// swiftlint:enable file_types_order
