@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FC083622A7E90B400DA0790 /* swift-randomable in Frameworks */ = {isa = PBXBuildFile; productRef = 1FC083612A7E90B400DA0790 /* swift-randomable */; };
+		1FC083672A7FC09E00DA0790 /* Randomable in Frameworks */ = {isa = PBXBuildFile; productRef = 1FC083662A7FC09E00DA0790 /* Randomable */; };
+		1FC083692A7FC0FF00DA0790 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC083682A7FC0FF00DA0790 /* TestModels.swift */; };
 		1FC0F3ED2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0F3EC2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift */; };
 		1FC0F3EF2A7E7B76007E7A22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1FC083652A7FA99400DA0790 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
+		1FC083682A7FC0FF00DA0790 /* TestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
 		1FC0F3E92A7E7B76007E7A22 /* swift-randomable-playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-randomable-playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC0F3EC2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRandomablePlaygroundApp.swift; sourceTree = "<group>"; };
 		1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC083622A7E90B400DA0790 /* swift-randomable in Frameworks */,
+				1FC083672A7FC09E00DA0790 /* Randomable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +67,7 @@
 				1FC0F3EC2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift */,
 				1FC0F3EE2A7E7B76007E7A22 /* ContentView.swift */,
 				1FC0F3F22A7E7B77007E7A22 /* swift_randomable_playground.entitlements */,
+				1FC083682A7FC0FF00DA0790 /* TestModels.swift */,
 			);
 			path = "swift-randomable-playground";
 			sourceTree = "<group>";
@@ -87,7 +90,7 @@
 			);
 			name = "swift-randomable-playground";
 			packageProductDependencies = (
-				1FC083612A7E90B400DA0790 /* swift-randomable */,
+				1FC083662A7FC09E00DA0790 /* Randomable */,
 			);
 			productName = "swift-randomable-playground";
 			productReference = 1FC0F3E92A7E7B76007E7A22 /* swift-randomable-playground.app */;
@@ -165,6 +168,7 @@
 			files = (
 				1FC0F3EF2A7E7B76007E7A22 /* ContentView.swift in Sources */,
 				1FC0F3ED2A7E7B76007E7A22 /* SwiftRandomablePlaygroundApp.swift in Sources */,
+				1FC083692A7FC0FF00DA0790 /* TestModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,9 +390,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1FC083612A7E90B400DA0790 /* swift-randomable */ = {
+		1FC083662A7FC09E00DA0790 /* Randomable */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = "swift-randomable";
+			productName = Randomable;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
