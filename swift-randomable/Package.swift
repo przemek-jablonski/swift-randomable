@@ -17,17 +17,14 @@ internal let package = Package(
       targets: ["Randomable"]
     )
   ],
-  dependencies: [
-  ],
   targets: [
     .target(
       name: "Randomable",
       dependencies: []
+    ),
+    .testTarget(
+      name: "Randomable-Tests",
+      dependencies: ["Randomable"]
     )
-//    ,
-//    .testTarget(
-//      name: "Randomable-tests",
-//      dependencies: ["Randomable"]
-//    )
   ]
 )
