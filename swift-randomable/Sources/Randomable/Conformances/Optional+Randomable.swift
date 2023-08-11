@@ -4,15 +4,20 @@ extension Optional: Randomable where Wrapped: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    let nilToValueRatio = 0.33
-    return random(
-      nilToValueRatio,
+    random(
+      nilToValueRatio: 0.25,
       &randomNumberGenerator
     )
   }
 
+  /**
+   Generates single random instance of given Optional type. You can specify
+
+   - Parameter nilToValueRatio: Object responsible for randomness seed.
+   - Parameter randomNumberGenerator: Object responsible for randomness seed.
+   */
   internal static func random(
-    _ nilToValueRatio: Double,
+    nilToValueRatio: Double,
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
     if Double.random(
