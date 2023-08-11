@@ -1,9 +1,10 @@
 import Foundation
 
 // MARK: - Foundation support
+
 extension Int: Randomable {
   public static func random(
-    _ randomNumberGenerator: inout RandomNumberGenerator
+    _ randomNumberGenerator: inout any RandomNumberGenerator
   ) -> Self {
     .random(
       in: Int.min...Int.max,
@@ -38,7 +39,7 @@ extension String: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    LoremIpsum.random
+    LoremIpsum.random(&randomNumberGenerator)
   }
 }
 
@@ -53,20 +54,15 @@ extension Character: Randomable {
   }
 }
 
-private let oneYearTimestamp = 31536000
+private let arbitraryUnixTimestamp = 1691593427.00
 extension Date: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    let currentTimestamp = Date().timeIntervalSince1970
-    let lowerRandomBoundMultiplier = -2
-    let upperRandomBoundMultiplier = 0.2
-    return Date(
+    Date(
       timeIntervalSince1970:
         Double.random(
-          in:
-            (currentTimestamp + Double(oneYearTimestamp) * Double(lowerRandomBoundMultiplier)) ..<
-          (currentTimestamp + Double(oneYearTimestamp) * Double(upperRandomBoundMultiplier)),
+          in: 0.00...arbitraryUnixTimestamp,
           using: &randomNumberGenerator
         )
     )
@@ -77,7 +73,26 @@ extension UUID: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    UUID()
+    UUID(
+      uuid: (
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator)),
+        UInt8(Int.random(&randomNumberGenerator))
+      )
+    )
   }
 }
 
@@ -89,24 +104,25 @@ extension Bool: Randomable {
   }
 }
 
+// TODO: cleanup swiftlint - don't want so much disables there
 // swiftlint:disable no_magic_numbers
 extension Data: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
-  ) -> Data {
+  ) -> Self {
     Data(
       repeating: UInt8(Int.random(&randomNumberGenerator)),
-      count: (0...10000).randomElement() ?? 0
+      count: (0...10000).randomElement(using: &randomNumberGenerator) ?? 0
     )
   }
 }
 // swiftlint:enable no_magic_numbers
 
+// swiftlint:disable force_unwrapping
 extension Locale: Randomable {
-  // swiftlint:disable force_unwrapping
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
-  ) -> Locale {
+  ) -> Self {
     Locale(
       identifier:
         Locale.availableIdentifiers.randomElement(
@@ -114,5 +130,23 @@ extension Locale: Randomable {
         )!
     )
   }
-  // swiftlint:enable force_unwrapping
 }
+// swiftlint:enable force_unwrapping
+
+// swiftlint:disable force_unwrapping
+extension URL: Randomable {
+  public static func random(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> URL {
+    URL(string: [
+      "https://google.com",
+      "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "https://picsum.photos/id/870/200/300?grayscale&blur=2",
+      "https://i.redd.it/vwlgciqshjp41.jpg",
+      "https://en.wikipedia.org/wiki/Lorem_ipsum"
+    ].randomElement(using: &randomNumberGenerator)!
+    )!
+  }
+}
+// TODO: a lot of ! with randomElement!
+// swiftlint:enable force_unwrapping

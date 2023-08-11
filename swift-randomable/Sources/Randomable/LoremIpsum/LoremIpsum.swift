@@ -19,17 +19,28 @@ private extension LoremIpsum {
 public extension LoremIpsum {
   /**
    Generates random chunk of "Lorem Ipsum" text.
-   
+
    - Note: The length of the Lorem Ipsum chunk may vary drastically. If there is a need for some more control over chunk length,
    refer to the other static `LoremIpsum` variables, such as `LoremIpsum.singleWord` or `LoremIpsum.extraExtraLong`.
-   
+
    Examples:
    - `"Curabitur quis nisl."`
    - `"Sed"`
    - `"Praesent eleifend eu nunc vitae elementum. In hac habitasse platea dictumst. Sed a tincidun"`
    */
-  static var random: String {
-    Bool.random() ? LoremIpsum.singleWord : Bool.random() ? LoremIpsum.regular : LoremIpsum.extraLong
+  static func random(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> String {
+    switch Int.random(in: 1...4, using: &randomNumberGenerator) {
+      case 1:
+        return LoremIpsum.singleWord(&randomNumberGenerator)
+      case 2:
+        return LoremIpsum.short(&randomNumberGenerator)
+      case 3:
+        return LoremIpsum.regular(&randomNumberGenerator)
+      default:
+        return LoremIpsum.extraLong(&randomNumberGenerator)
+    }
   }
 }
 
@@ -42,12 +53,14 @@ public extension LoremIpsum {
    - `"Sed"`
    - `"Pellentesque"`
    */
-  static var singleWord: String {
+  static func singleWord(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> String {
     LoremIpsum
       .words
-      .filter({ $0.count > 4 })
-      .random()
-      .filter({ CharacterSet.letters.contains($0.unicodeScalars.first!) })
+      .filter { $0.count > 4 }
+      .randomElement(using: &randomNumberGenerator)!
+      .filter { CharacterSet.letters.contains($0.unicodeScalars.first!) }
       .capitalized
   }
 
@@ -59,9 +72,16 @@ public extension LoremIpsum {
    - `"Curabitur"`
    - `"Placerat facilisis"`
    */
-  static var short: String {
+  static func short(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> String {
     (1...3)
-      .map({ _ in LoremIpsum.words.random().filter({ CharacterSet.letters.contains($0.unicodeScalars.first!) }) })
+      .map { _ in
+        LoremIpsum
+          .words
+          .randomElement(using: &randomNumberGenerator)!
+          .filter { CharacterSet.letters.contains($0.unicodeScalars.first!) }
+      }
       .joined(separator: ", ")
       .capitalized
   }
@@ -73,12 +93,19 @@ public extension LoremIpsum {
    - `"Nam sodales volutpat elementum. Aenean pulvinar magna leo."`
    - `"Sed Ornare Metus Et."`
    */
-  static var regular: String {
+  static func regular(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> String {
     (4...9)
-      .map({ _ in LoremIpsum.words.random().filter({ CharacterSet.letters.contains($0.unicodeScalars.first!) }) })
+      .map { _ in
+        LoremIpsum
+          .words
+          .randomElement(using: &randomNumberGenerator)!
+          .filter { CharacterSet.letters.contains($0.unicodeScalars.first!) }
+      }
       .joined(separator: ", ")
       .capitalized
-      + "."
+    + "."
   }
 
   /**
@@ -89,32 +116,42 @@ public extension LoremIpsum {
    - `"Suspendisse ultrices nisi ut molestie congue."`
    - `"Praesent eleifend eu nunc vitae elementum."`
    */
-  static var long: String {
-    let random = LoremIpsum.sentences.random()
+  static func long(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> String {
+    let random = LoremIpsum.sentences.randomElement(using: &randomNumberGenerator)!
     if !CharacterSet.letters.contains(random.last!.unicodeScalars.first!) {
       return random.dropLast() + "."
     }
     return random + "."
   }
 
-   /**
-    Returns an extra long chunk of Lorem Ipsum text (2 to 3 sentences joined together).
-    
-    Example:
-    - `"Praesent eleifend eu nunc vitae elementum. Sed et est quis est sodales sodales."`
-    */
-  static var extraLong: String {
+  /**
+   Returns an extra long chunk of Lorem Ipsum text (2 to 3 sentences joined together).
+
+   Example:
+   - `"Praesent eleifend eu nunc vitae elementum. Sed et est quis est sodales sodales."`
+   */
+  static func extraLong(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> String {
     (2...3)
-      .map({ _ in LoremIpsum.long })
+      .map { _ in
+        LoremIpsum.long(&randomNumberGenerator)
+      }
       .joined(separator: " ")
   }
 
   /**
    Returns an extra long chunk of Lorem Ipsum text (3 to 5 sentences joined together).
    */
-  static var extraExtraLong: String {
+  static func extraExtraLong(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> String {
     (3...5)
-      .map({ _ in LoremIpsum.long })
+      .map { _ in
+        LoremIpsum.long(&randomNumberGenerator)
+      }
       .joined(separator: " ")
   }
 }
