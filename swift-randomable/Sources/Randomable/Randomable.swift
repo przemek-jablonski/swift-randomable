@@ -23,7 +23,7 @@ public protocol Randomable {
    - Parameter randomNumberGenerator: Object responsible for randomness seed.
    */
   static func randoms(
-    _ randomNumberGenerator: inout RandomNumberGenerator
+    _ randomNumberGenerator: inout any RandomNumberGenerator
   ) -> [Self]
 
   /**
