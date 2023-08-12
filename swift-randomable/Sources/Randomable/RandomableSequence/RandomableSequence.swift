@@ -1,32 +1,19 @@
 /**
- Signifies ability of generating random/mock instances of the conforming types.
+ Signifies ability of statically generating random/mock Sequences of the conforming types.
  */
-public protocol RandomableSequence: Collection where Element: Randomable {
+public protocol RandomableSequence: Sequence where Element: Randomable {
   /**
-   Returns single random element from given collection instance.
+   Generates single random sequence from given children type.
 
-   - Note: If the random element cannot be extracted from collection (eg. array is empty),
-   then the element will be instantiated in-place randomly, using static `Randomable.random` property.
-   - Note: To prevent "fake" element synthesis in above scenario, use `randomElement()`
-   function from Swift's standard library.
+   - Parameter randomNumberGenerator: Object responsible for randomness seed.
    */
-  func random() -> Element
+  static func random(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> any Sequence
 
   /**
-   Returns random chunk of elements from given collection instance.
-
-   - Note: Do note that due to the randomness nature of this property, it may exhibit some corner cases on runtime,
-   eg. returned chunk may be empty or may be exactly the same length as original collection etc.
+   Generates single random instance of given type.
+   Uses system's default `RandomNumberGenerator`to seed randomness.
    */
-  func randomChunk() -> [Element]
+  static func random() -> any Sequence
 }
-
-//extension Array: RandomableCollection where Element: Randomable {
-//  public func random() -> Element {
-//    randomElement() ?? Element.random()
-//  }
-//
-//  public func randomChunk() -> [Element] {
-//    self.shuffled() // TODO:
-//  }
-//}
