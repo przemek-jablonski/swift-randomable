@@ -22,14 +22,6 @@ public extension Randomable {
   }
 }
 
-// MARK: - Private
-
-private let multipleItemsRandomRangeLowerBound = 1
-private let multipleItemsRandomRangeUpperBound = 20
-private func randomItemsRange(_ randomNumberGenerator: inout RandomNumberGenerator) -> Range<Int> {
-  0 ..< ((multipleItemsRandomRangeLowerBound..<multipleItemsRandomRangeUpperBound).randomElement(using: &randomNumberGenerator) ?? 1)
-}
-
 // MARK: - Implementations
 
 // Default implementations of the `Randomable.randoms(:)` protocol functions.
@@ -44,7 +36,8 @@ public extension Randomable {
   static func randoms(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> [Self] {
-    randomItemsRange(&randomNumberGenerator)
+    Constants
+      .randomItemsRange(&randomNumberGenerator)
       .map { _ in
         Self.random(&randomNumberGenerator)
       } // TODO: THIS WAS UNTESTED!!!!!
@@ -65,7 +58,8 @@ public extension Randomable where Self: Hashable {
   ) -> [Self] {
     Array(
       Set(
-        randomItemsRange(&randomNumberGenerator)
+        Constants
+          .randomItemsRange(&randomNumberGenerator)
           .map { _ in
             Self.random(&randomNumberGenerator)
           }
@@ -87,10 +81,10 @@ public extension Randomable where Self: Hashable & Identifiable {
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> [Self] {
     var uniqueIds = Set<Self.ID>()
-
     return Array(
       Set(
-        randomItemsRange(&randomNumberGenerator).map { _ in
+        Constants
+          .randomItemsRange(&randomNumberGenerator).map { _ in
           Self.random(&randomNumberGenerator)
         }))
     .filter { element in

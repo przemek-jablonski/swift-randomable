@@ -31,5 +31,3 @@ public protocol Randomable {
    */
   static func randoms() -> [Self]
 }
-
-  [].randomelement
