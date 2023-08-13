@@ -14,9 +14,8 @@ internal class RandomableMultipleItemsGenerationTestCase: XCTestCase {
   }
 
   func test_generatingMultipleRandomItems_withNonHashableModel_mightGenerateDuplicateItems() {
-
-    // `Model` is not Hashable (has `nonHashableElement` property)
-    // Every `Model` instance is equal since it's contents are always the same.
+    // `Model` is not Hashable (has `nonHashableElement` property).
+    // Every `Model` instance is equal since it's contents are always equal.
     struct Model: Randomable, Equatable {
       let nonHashableElement = NonHashableObject()
 
@@ -48,8 +47,7 @@ internal class RandomableMultipleItemsGenerationTestCase: XCTestCase {
   }
 
   func test_generatingMultipleRandomItems_withHashableModel_removesDuplicatesFromResultArray() {
-
-    // `Model` is Hashable, but it's contents are static, always the same
+    // `Model` is Hashable, but it's contents are static, always equal.
     struct Model: Randomable, Hashable {
       let staticContents = 1
 
@@ -77,7 +75,7 @@ internal class RandomableMultipleItemsGenerationTestCase: XCTestCase {
   }
 
   func test_generatingMultipleRandomItems_withHashableIdentifiableModel_removesDuplicatesFromResultArray() {
-    // `Model` is `Identifiable` but the `id` field is always the same.
+    // `Model` is `Identifiable` but the `id` field is always equal.
     struct Model: Randomable, Hashable, Identifiable {
       let id = 1
       let string: String
