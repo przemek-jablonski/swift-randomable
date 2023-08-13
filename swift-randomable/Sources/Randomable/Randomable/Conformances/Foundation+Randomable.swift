@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: - Foundation support
-
 extension Int: Randomable {
   public static func random(
     _ randomNumberGenerator: inout any RandomNumberGenerator

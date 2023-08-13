@@ -1,5 +1,5 @@
 /**
- Signifies ability of generating random/mock instances of the conforming types.
+ Signifies ability of statically generating random/mock instances of the conforming types.
  */
 public protocol Randomable {
   /**
