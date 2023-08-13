@@ -6,8 +6,8 @@ import XCTest
 internal class OptionalRandomableTestCase: XCTestCase {
   internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
-  override internal func setUp() {
-    self.randomNumberGenerator = StaticRandomNumberGenerator()
+  override internal func setUp() async throws {
+    self.randomNumberGenerator = try StaticRandomNumberGenerator()
   }
 
   override internal func tearDown() async throws {

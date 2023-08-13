@@ -2,13 +2,13 @@ import Randomable
 import XCTest
 
 internal class FoundationRandomableTestCase: XCTestCase {
-  var randomNumberGenerator: (any RandomNumberGenerator)!
+  internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
-  override func setUp() {
-    self.randomNumberGenerator = StaticRandomNumberGenerator()
+  override internal func setUp() async throws {
+    self.randomNumberGenerator = try StaticRandomNumberGenerator()
   }
 
-  override func tearDown() async throws {
+  override internal func tearDown() async throws {
     self.randomNumberGenerator = nil
   }
 

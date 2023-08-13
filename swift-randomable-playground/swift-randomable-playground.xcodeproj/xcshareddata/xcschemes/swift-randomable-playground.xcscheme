@@ -39,7 +39,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:swift-randomable-playground/SwiftRandomablePlaygroundTestPlan.xctestplan"
+            reference = "container:../swift-randomable-playground.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

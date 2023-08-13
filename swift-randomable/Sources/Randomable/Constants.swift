@@ -5,7 +5,7 @@ internal enum Constants {
   /**
    The lower bounds of range used when generating sequences of random instances internally.
    */
-  internal static var multipleItemsRandomRangeLowerBound: Int { 1 }
+  internal static var multipleItemsRandomRangeLowerBound: Int { 12 }
 
   /**
    The upper bounds of range used when generating sequences of random instances internally.
@@ -46,7 +46,7 @@ internal enum Constants {
   private static var defaultRandomItemsRange: (
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Range<Int> = { randomNumberGenerator in
-    (0..<randomItemsCount(&randomNumberGenerator))
+    1..<randomItemsCount(&randomNumberGenerator)
   }
 
   private static var overriddenRandomItemsRange: (
