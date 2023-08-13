@@ -1,14 +1,16 @@
 @testable import Randomable
 import XCTest
 
+// swiftlint:disable discouraged_optional_boolean
+// swiftlint:disable implicitly_unwrapped_optional
 internal class OptionalRandomableTestCase: XCTestCase {
-  var randomNumberGenerator: (any RandomNumberGenerator)!
+  internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
-  override func setUp() {
+  override internal func setUp() {
     self.randomNumberGenerator = StaticRandomNumberGenerator()
   }
 
-  override func tearDown() async throws {
+  override internal func tearDown() async throws {
     self.randomNumberGenerator = nil
   }
 
@@ -272,3 +274,5 @@ internal class OptionalRandomableTestCase: XCTestCase {
     )
   }
 }
+// swiftlint:enable discouraged_optional_boolean
+// swiftlint:enable implicitly_unwrapped_optional

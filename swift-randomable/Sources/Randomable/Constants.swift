@@ -1,4 +1,4 @@
-internal struct Constants {
+internal enum Constants {
 
   // MARK: - Constants
 
@@ -55,7 +55,7 @@ internal struct Constants {
 }
 
 extension Constants {
-  static func override(
+  internal static func override(
     randomItemsCount: ((
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Int)?
@@ -63,7 +63,7 @@ extension Constants {
     Self.overriddenRandomItemsCount = randomItemsCount
   }
 
-  static func override(
+  internal static func override(
     randomItemsRange: ((
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Range<Int>)?
