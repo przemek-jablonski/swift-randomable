@@ -273,6 +273,10 @@ internal class OptionalRandomableTestCase: XCTestCase {
       }
     )
   }
+
+  internal func test_callingOptionalRandomizationWithNoRatioSpecified_shouldNotCrash() {
+    XCTAssertNoThrow(String?.random(&randomNumberGenerator))
+  }
 }
 // swiftlint:enable discouraged_optional_boolean
 // swiftlint:enable implicitly_unwrapped_optional
