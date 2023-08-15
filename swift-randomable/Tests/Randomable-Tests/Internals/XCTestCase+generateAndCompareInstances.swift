@@ -1,8 +1,8 @@
 import Randomable
 import XCTest
 
-internal extension XCTestCase {
-  func generateAndCompareInstances<T: Randomable & Equatable>(
+extension XCTestCase {
+  internal func generateAndCompareInstances<T: Randomable & Equatable>(
     of type: T.Type,
     using randomNumberGenerator: inout any RandomNumberGenerator,
     generation: (_ type: T.Type, _ generator: inout any RandomNumberGenerator) -> T = { $0.random(&$1) },
@@ -16,7 +16,7 @@ internal extension XCTestCase {
     )
   }
 
-  func generateInstances<T: Randomable>(
+  internal func generateInstances<T: Randomable>(
     of type: T.Type,
     using randomNumberGenerator: inout any RandomNumberGenerator,
     generation: (_ type: T.Type, _ generator: inout any RandomNumberGenerator) -> T = { $0.random(&$1) },
