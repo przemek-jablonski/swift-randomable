@@ -4,8 +4,8 @@ import XCTest
 internal class LoremIpsumTestCase: XCTestCase {
   var randomNumberGenerator: (any RandomNumberGenerator)!
 
-  override func setUp() {
-    self.randomNumberGenerator = StaticRandomNumberGenerator()
+  override func setUp() async throws {
+    self.randomNumberGenerator = try StaticRandomNumberGenerator()
   }
 
   override func tearDown() async throws {

@@ -5,7 +5,7 @@ internal enum Constants {
   /**
    The lower bounds of range used when generating sequences of random instances internally.
    */
-  internal static var multipleItemsRandomRangeLowerBound: Int { 1 }
+  internal static var multipleItemsRandomRangeLowerBound: Int { 12 }
 
   /**
    The upper bounds of range used when generating sequences of random instances internally.
@@ -27,7 +27,7 @@ internal enum Constants {
   internal static func randomItemsRange(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Range<Int> {
-    overriddenRandomItemsRange?(&randomNumberGenerator) ?? defaultRandomItemsRange(&randomNumberGenerator)
+    1..<randomItemsCount(&randomNumberGenerator)
   }
 
   // MARK: - Overridables
@@ -43,15 +43,15 @@ internal enum Constants {
     (_ randomNumberGenerator: inout RandomNumberGenerator) -> Int
   )?
 
-  private static var defaultRandomItemsRange: (
-    _ randomNumberGenerator: inout RandomNumberGenerator
-  ) -> Range<Int> = { randomNumberGenerator in
-    (0..<randomItemsCount(&randomNumberGenerator))
-  }
+//  private static var defaultRandomItemsRange: (
+//    _ randomNumberGenerator: inout RandomNumberGenerator
+//  ) -> Range<Int> = { randomNumberGenerator in
+//    1..<randomItemsCount(&randomNumberGenerator)
+//  }
 
-  private static var overriddenRandomItemsRange: (
-    (_ randomNumberGenerator: inout RandomNumberGenerator) -> Range<Int>
-  )?
+//  private static var overriddenRandomItemsRange: (
+//    (_ randomNumberGenerator: inout RandomNumberGenerator) -> Range<Int>
+//  )?
 }
 
 extension Constants {
@@ -63,11 +63,11 @@ extension Constants {
     Self.overriddenRandomItemsCount = randomItemsCount
   }
 
-  internal static func override(
-    randomItemsRange: ((
-      _ randomNumberGenerator: inout RandomNumberGenerator
-    ) -> Range<Int>)?
-  ) {
-    Self.overriddenRandomItemsRange = randomItemsRange
-  }
+//  internal static func override(
+//    randomItemsRange: ((
+//      _ randomNumberGenerator: inout RandomNumberGenerator
+//    ) -> Range<Int>)?
+//  ) {
+//    Self.overriddenRandomItemsRange = randomItemsRange
+//  }
 }

@@ -84,11 +84,12 @@ public extension Randomable where Self: Hashable & Identifiable {
     return Array(
       Set(
         Constants
-          .randomItemsRange(&randomNumberGenerator).map { _ in
-          Self.random(&randomNumberGenerator)
-        }))
-    .filter { element in
-      uniqueIds.insert(element.id).inserted
-    }
+          .randomItemsRange(&randomNumberGenerator)
+          .map { _ in
+            Self.random(&randomNumberGenerator)
+          }
+      )
+    )
+      .filter { element in uniqueIds.insert(element.id).inserted }
   }
 }

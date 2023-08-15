@@ -1,7 +1,9 @@
 internal class IncrementingRandomNumberGenerator {
   private var value: UInt64
 
-  internal init(startWith value: UInt64 = 0) {
+  internal init(
+    startWith value: UInt64 = 0
+  ) {
     self.value = value
   }
 }

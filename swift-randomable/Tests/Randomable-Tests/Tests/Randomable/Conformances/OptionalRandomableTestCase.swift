@@ -6,8 +6,8 @@ import XCTest
 internal class OptionalRandomableTestCase: XCTestCase {
   internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
-  override internal func setUp() {
-    self.randomNumberGenerator = StaticRandomNumberGenerator()
+  override internal func setUp() async throws {
+    self.randomNumberGenerator = try StaticRandomNumberGenerator()
   }
 
   override internal func tearDown() async throws {
@@ -272,6 +272,10 @@ internal class OptionalRandomableTestCase: XCTestCase {
         XCTAssertNil($1)
       }
     )
+  }
+
+  internal func test_callingOptionalRandomizationWithNoRatioSpecified_shouldNotCrash() {
+    XCTAssertNoThrow(String?.random(&randomNumberGenerator))
   }
 }
 // swiftlint:enable discouraged_optional_boolean

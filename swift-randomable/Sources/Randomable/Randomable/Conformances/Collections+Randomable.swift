@@ -4,9 +4,7 @@ extension Array: Randomable where Element: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    Constants
-      .randomItemsRange(&randomNumberGenerator)
-      .map { _ in .random(&randomNumberGenerator) }
+    Self.Element.randoms(&randomNumberGenerator)
   }
 }
 
@@ -16,13 +14,7 @@ extension Dictionary: Randomable where Key: Randomable & Hashable, Value: Random
   ) -> Self {
     Dictionary(
       uniqueKeysWithValues:
-        Set(
-          Constants
-            .randomItemsRange(&randomNumberGenerator)
-            .map { _ in
-              Key.random(&randomNumberGenerator)
-            }
-        ).map { key in
+        Set(Self.Key.randoms(&randomNumberGenerator)).map { key in
           Dictionary.Element(key, .random(&randomNumberGenerator))
         }
     )
@@ -53,11 +45,7 @@ extension Set: Randomable where Element: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    Set(
-//      Constants
-//        .randomItemsRange(&randomNumberGenerator)
-//        .map { _ in .random(&randomNumberGenerator) }
-    )
+    Set(Self.Element.randoms(&randomNumberGenerator))
   }
 }
 
@@ -65,10 +53,8 @@ extension Substring: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
-    Substring(
-      Constants
-        .randomItemsRange(&randomNumberGenerator)
-        .map { _ in .random(&randomNumberGenerator) }
-    )
+    String
+      .random(&randomNumberGenerator)
+      .prefix(.random(&randomNumberGenerator))
   }
 }
