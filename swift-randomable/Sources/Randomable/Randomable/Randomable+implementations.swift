@@ -1,7 +1,5 @@
 import Foundation
 
-// TODO: add StringGenerationSuggestion like random(.fileName), random(.user) or something
-
 // MARK: - Routing
 
 // Default routing of the `Randomable.random()` protocol functions.
@@ -10,8 +8,6 @@ public extension Randomable {
     var randomNumberGenerator: RandomNumberGenerator = SystemRandomNumberGenerator()
     return Self.random(&randomNumberGenerator)
   }
-
-  func random() -> Self { Self.random() }
 }
 
 // Default routing of the `Randomable.randoms()` protocol functions.
