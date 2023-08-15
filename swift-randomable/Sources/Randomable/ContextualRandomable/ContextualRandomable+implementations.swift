@@ -3,25 +3,33 @@ import Foundation
 // MARK: - Routing
 
 // Default routing of the `Randomable.random()` protocol functions.
-public extension Randomable {
-  static func random() -> Self {
+public extension ContextualRandomable {
+  static func random(
+    _ context: Context
+  ) -> Self {
     var randomNumberGenerator: RandomNumberGenerator = SystemRandomNumberGenerator()
-    return Self.random(&randomNumberGenerator)
+    return Self.random(
+      context,
+      &randomNumberGenerator
+    )
   }
 }
 
 // Default routing of the `Randomable.randoms()` protocol functions.
-public extension Randomable {
-  static func randoms() -> [Self] {
+public extension ContextualRandomable {
+  static func randoms(
+    _ context: Context
+  ) -> [Self] {
     var randomNumberGenerator: RandomNumberGenerator = SystemRandomNumberGenerator()
-    return Self.randoms(&randomNumberGenerator)
+    return Self.randoms(
+      context,
+      &randomNumberGenerator
+    )
   }
 }
 
 // MARK: - Implementations
-
-// Default implementations of the `Randomable.randoms(:)` protocol functions.
-public extension Randomable {
+public extension ContextualRandomable {
   /**
    Generates array of random instances of given type.
    Array's elements might not be unique.
@@ -30,17 +38,21 @@ public extension Randomable {
    - Parameter randomNumberGenerator: Object responsible for randomness seed.
    */
   static func randoms(
+    _ context: Context,
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> [Self] {
     Constants
       .randomItemsRange(&randomNumberGenerator)
       .map { _ in
-        Self.random(&randomNumberGenerator)
+        Self.random(
+          context,
+          &randomNumberGenerator
+        )
       }
   }
 }
 
-public extension Randomable where Self: Hashable {
+public extension ContextualRandomable where Self: Hashable {
   /**
    Generates array of random instances of given `Hashable` type.
    Array's elements will be unique from each other (unique as in `Equatable` sense,
@@ -50,6 +62,7 @@ public extension Randomable where Self: Hashable {
    - Parameter randomNumberGenerator: Object responsible for randomness seed.
    */
   static func randoms(
+    _ context: Context,
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> [Self] {
     Array(
@@ -57,14 +70,17 @@ public extension Randomable where Self: Hashable {
         Constants
           .randomItemsRange(&randomNumberGenerator)
           .map { _ in
-            Self.random(&randomNumberGenerator)
+            Self.random(
+              context,
+              &randomNumberGenerator
+            )
           }
       )
     )
   }
 }
 
-public extension Randomable where Self: Hashable & Identifiable {
+public extension ContextualRandomable where Self: Hashable & Identifiable {
   /**
    Generates array of random instances of given  `Hashable` and `Identifiable` type.
    Array's elements will be unique from each other, both in their `Equatable` values
@@ -74,6 +90,7 @@ public extension Randomable where Self: Hashable & Identifiable {
    - Parameter randomNumberGenerator: Object responsible for randomness seed.
    */
   static func randoms(
+    _ context: Context,
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> [Self] {
     var uniqueIds = Set<Self.ID>()
@@ -82,10 +99,13 @@ public extension Randomable where Self: Hashable & Identifiable {
         Constants
           .randomItemsRange(&randomNumberGenerator)
           .map { _ in
-            Self.random(&randomNumberGenerator)
+            Self.random(
+              context,
+              &randomNumberGenerator
+            )
           }
       )
     )
-      .filter { element in uniqueIds.insert(element.id).inserted }
+    .filter { element in uniqueIds.insert(element.id).inserted }
   }
 }
