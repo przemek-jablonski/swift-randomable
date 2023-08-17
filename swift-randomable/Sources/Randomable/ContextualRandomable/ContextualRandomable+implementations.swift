@@ -4,6 +4,12 @@ import Foundation
 
 // Default routing of the `Randomable.random()` protocol functions.
 public extension ContextualRandomable {
+  /**
+   Generates single random instance of given type.
+   Uses system's default `RandomNumberGenerator`to seed randomness.
+
+   - Parameter context: Contextual hint that influences the generation result.
+   */
   static func random(
     _ context: Context
   ) -> Self {
@@ -17,6 +23,11 @@ public extension ContextualRandomable {
 
 // Default routing of the `Randomable.randoms()` protocol functions.
 public extension ContextualRandomable {
+  /**
+   Generates array of random instances of given type. Uses system's default `RandomNumberGenerator`to seed randomness.
+
+   - Parameter context: Contextual hint that influences the generation result.
+   */
   static func randoms(
     _ context: Context
   ) -> [Self] {

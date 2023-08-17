@@ -102,8 +102,6 @@ extension Bool: Randomable {
   }
 }
 
-// TODO: cleanup swiftlint - don't want so much disables there
-// swiftlint:disable no_magic_numbers
 extension Data: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
@@ -114,28 +112,27 @@ extension Data: Randomable {
     )
   }
 }
-// swiftlint:enable no_magic_numbers
 
-// swiftlint:disable force_unwrapping
 extension Locale: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
+    // swiftlint:disable force_unwrapping
     Locale(
       identifier:
         Locale.availableIdentifiers.randomElement(
           using: &randomNumberGenerator
         )!
     )
+    // swiftlint:enable force_unwrapping
   }
 }
-// swiftlint:enable force_unwrapping
 
-// swiftlint:disable force_unwrapping
 extension URL: Randomable {
   public static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> URL {
+    // swiftlint:disable force_unwrapping
     URL(string: [
       "https://google.com",
       "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -144,7 +141,6 @@ extension URL: Randomable {
       "https://en.wikipedia.org/wiki/Lorem_ipsum"
     ].randomElement(using: &randomNumberGenerator)!
     )!
+    // swiftlint:enable force_unwrapping
   }
 }
-// TODO: a lot of ! with randomElement!
-// swiftlint:enable force_unwrapping

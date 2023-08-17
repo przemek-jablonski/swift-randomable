@@ -1,5 +1,5 @@
 internal struct ContextualStringDataSet {
-  static let shared = Self()
+  internal static let shared = Self()
   private init() {}
 
   internal let sha = [
@@ -197,7 +197,7 @@ internal struct ContextualStringDataSet {
 }
 
 internal struct ContextualIntDataSet {
-  static let shared = Self()
+  internal static let shared = Self()
   private init() {}
 
   internal let percent0_100 = [
@@ -257,7 +257,7 @@ internal struct ContextualIntDataSet {
     1_000_000,
     10_000_000,
     100_000_000,
-    1_000_000_000,
+    1_000_000_000
   ]
 
   internal let socialMediaReactions = [
@@ -304,7 +304,7 @@ internal struct ContextualIntDataSet {
 }
 
 internal struct ContextualFloatDataSet {
-  static let shared = Self()
+  internal static let shared = Self()
   private init() {}
 
   internal let percent0_1 = [
@@ -375,6 +375,6 @@ internal struct ContextualFloatDataSet {
     1_000_000.00,
     10_000_000.00,
     100_000_000.00,
-    1_000_000_000.00,
+    1_000_000_000.00
   ]
 }

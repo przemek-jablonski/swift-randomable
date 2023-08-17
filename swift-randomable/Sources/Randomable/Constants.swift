@@ -5,7 +5,7 @@ internal enum Constants {
   /**
    The lower bounds of range used when generating sequences of random instances internally.
    */
-  internal static var multipleItemsRandomRangeLowerBound: Int { 12 }
+  internal static var multipleItemsRandomRangeLowerBound: Int { 1 }
 
   /**
    The upper bounds of range used when generating sequences of random instances internally.

@@ -32,14 +32,10 @@ public extension LoremIpsum {
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> String {
     switch Int.random(in: 1...4, using: &randomNumberGenerator) {
-      case 1:
-        return LoremIpsum.singleWord(&randomNumberGenerator)
-      case 2:
-        return LoremIpsum.short(&randomNumberGenerator)
-      case 3:
-        return LoremIpsum.regular(&randomNumberGenerator)
-      default:
-        return LoremIpsum.extraLong(&randomNumberGenerator)
+      case 1: return LoremIpsum.singleWord(&randomNumberGenerator)
+      case 2: return LoremIpsum.short(&randomNumberGenerator)
+      case 3: return LoremIpsum.regular(&randomNumberGenerator)
+      default: return LoremIpsum.extraLong(&randomNumberGenerator)
     }
   }
 }

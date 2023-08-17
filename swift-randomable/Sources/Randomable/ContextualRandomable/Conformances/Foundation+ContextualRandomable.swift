@@ -1,8 +1,5 @@
 import Foundation
 
-// swiftlint:disable all
-// TODO: Swiftlint
-
 extension Int: ContextualRandomable {
   public enum Context {
     case percent0_100
@@ -35,6 +32,8 @@ extension Int: ContextualRandomable {
     )
   }
 
+  // swiftlint:disable force_unwrapping
+  // swiftlint:disable cyclomatic_complexity
   internal static func random(
     _ context: Context,
     _ dataSet: ContextualIntDataSet,
@@ -54,6 +53,8 @@ extension Int: ContextualRandomable {
       case .smallFileBytes: return dataSet.smallFileBytes.randomElement(using: &randomNumberGenerator)!
       case .socialMediaReactions: return dataSet.socialMediaReactions.randomElement(using: &randomNumberGenerator)!
     }
+    // swiftlint:enable force_unwrapping
+    // swiftlint:enable cyclomatic_complexity
   }
 }
 
@@ -89,6 +90,7 @@ extension Float: ContextualRandomable {
     _ dataSet: ContextualFloatDataSet,
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Double {
+    // swiftlint:disable force_unwrapping
     switch context {
       case .bigAmount: return dataSet.bigAmount.randomElement(using: &randomNumberGenerator)!
       case .extraBigAmount: return dataSet.extraBigAmount.randomElement(using: &randomNumberGenerator)!
@@ -99,6 +101,7 @@ extension Float: ContextualRandomable {
       case .regularAmount: return dataSet.regularAmount.randomElement(using: &randomNumberGenerator)!
       case .smallAmount: return dataSet.smallAmount.randomElement(using: &randomNumberGenerator)!
     }
+    // swiftlint:enable force_unwrapping
   }
 }
 
@@ -132,6 +135,7 @@ extension Double: ContextualRandomable {
     _ dataSet: ContextualFloatDataSet,
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Self {
+    // swiftlint:disable force_unwrapping
     switch context {
       case .bigAmount: return dataSet.bigAmount.randomElement(using: &randomNumberGenerator)!
       case .extraBigAmount: return dataSet.extraBigAmount.randomElement(using: &randomNumberGenerator)!
@@ -142,10 +146,9 @@ extension Double: ContextualRandomable {
       case .regularAmount: return dataSet.regularAmount.randomElement(using: &randomNumberGenerator)!
       case .smallAmount: return dataSet.smallAmount.randomElement(using: &randomNumberGenerator)!
     }
+    // swiftlint:enable force_unwrapping
   }
 }
-
-
 
 extension String: ContextualRandomable {
   public enum Context {
@@ -191,6 +194,8 @@ extension String: ContextualRandomable {
     )
   }
 
+  // swiftlint:disable force_unwrapping
+  // swiftlint:disable cyclomatic_complexity
   internal static func random(
     _ context: Context,
     _ dataSet: ContextualStringDataSet,
@@ -242,5 +247,7 @@ extension String: ContextualRandomable {
       case .tag:
         return dataSet.tag.randomElement(using: &randomNumberGenerator)!
     }
+    // swiftlint:enable force_unwrapping
+    // swiftlint:enable cyclomatic_complexity
   }
 }

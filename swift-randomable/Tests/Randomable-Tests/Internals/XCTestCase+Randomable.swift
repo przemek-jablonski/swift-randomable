@@ -1,6 +1,7 @@
 import Randomable
 import XCTest
 
+// MARK: - Randomable
 extension XCTestCase {
   internal func generateAndCompareInstances<T: Randomable & Equatable>(
     of type: T.Type,
