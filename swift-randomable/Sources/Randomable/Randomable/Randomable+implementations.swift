@@ -4,6 +4,10 @@ import Foundation
 
 // Default routing of the `Randomable.random()` protocol functions.
 public extension Randomable {
+  /**
+   Generates single random instance of given type.
+   Uses system's default `RandomNumberGenerator`to seed randomness.
+   */
   static func random() -> Self {
     var randomNumberGenerator: RandomNumberGenerator = SystemRandomNumberGenerator()
     return Self.random(&randomNumberGenerator)
@@ -12,6 +16,9 @@ public extension Randomable {
 
 // Default routing of the `Randomable.randoms()` protocol functions.
 public extension Randomable {
+  /**
+   Generates array of random instances of given type. Uses system's default `RandomNumberGenerator`to seed randomness.
+   */
   static func randoms() -> [Self] {
     var randomNumberGenerator: RandomNumberGenerator = SystemRandomNumberGenerator()
     return Self.randoms(&randomNumberGenerator)

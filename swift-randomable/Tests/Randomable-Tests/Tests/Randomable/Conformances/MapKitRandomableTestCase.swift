@@ -2,14 +2,15 @@ import MapKit
 import Randomable
 import XCTest
 
+// swiftlint:disable implicitly_unwrapped_optional
 internal class MapKitRandomableTestCase: XCTestCase {
-  var randomNumberGenerator: (any RandomNumberGenerator)!
+  internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
-  override func setUp() async throws {
+  override internal func setUp() async throws {
     self.randomNumberGenerator = try StaticRandomNumberGenerator()
   }
 
-  override func tearDown() async throws {
+  override internal func tearDown() async throws {
     self.randomNumberGenerator = nil
   }
 
@@ -29,7 +30,7 @@ internal class MapKitRandomableTestCase: XCTestCase {
         )
 
         XCTAssertEqual(
-          instance1.span.longitudeDelta, 
+          instance1.span.longitudeDelta,
           instance2.span.longitudeDelta
         )
 
@@ -77,3 +78,4 @@ internal class MapKitRandomableTestCase: XCTestCase {
     )
   }
 }
+// swiftlint:enable implicitly_unwrapped_optional

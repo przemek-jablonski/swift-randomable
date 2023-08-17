@@ -1,6 +1,7 @@
-@testable import Randomable // TODO: remove @testable
+@testable import Randomable
 import XCTest
 
+// swiftlint:disable implicitly_unwrapped_optional
 internal class CollectionsRandomableTestCase: XCTestCase {
   internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
@@ -74,49 +75,49 @@ internal class CollectionsRandomableTestCase: XCTestCase {
 
   internal func test_generatingEquatableArrayAndGeneratingMultipleEquatableArrayItems_shouldProduceEqualArrays() {
     XCTAssertEqual(
-      Array<EquatableModel>.random(&randomNumberGenerator),
+      [EquatableModel].random(&randomNumberGenerator),
       EquatableModel.randoms(&randomNumberGenerator)
     )
   }
 
   internal func test_generatingHashableArrayAndGeneratingMultipleHashableArrayItems_shouldProduceEqualArrays() {
     XCTAssertEqual(
-      Array<HashableModel>.random(&randomNumberGenerator),
+      [HashableModel].random(&randomNumberGenerator),
       HashableModel.randoms(&randomNumberGenerator)
     )
   }
 
   internal func test_generatingIdentifiableArrayAndGeneratingMultipleIdentifiableArrayItems_shouldProduceEqualArrays() {
     XCTAssertEqual(
-      Array<IdentifiableModel>.random(&randomNumberGenerator),
+      [IdentifiableModel].random(&randomNumberGenerator),
       IdentifiableModel.randoms(&randomNumberGenerator)
     )
   }
 
   internal func test_twoDictionariesOfEquatableModels_generatedUsingStaticGenerator_shouldBeEqual() {
     generateAndCompareInstances(
-      of: Dictionary<Int, EquatableModel>.self,
+      of: [Int: EquatableModel].self,
       using: &randomNumberGenerator
     )
   }
 
   internal func test_twoDictionariesOfHashableModels_generatedUsingStaticGenerator_shouldBeEqual() {
     generateAndCompareInstances(
-      of: Dictionary<Int, HashableModel>.self,
+      of: [Int: HashableModel].self,
       using: &randomNumberGenerator
     )
   }
 
   internal func test_twoDictionariesOfIdentifiableModels_generatedUsingStaticGenerator_shouldBeEqual() {
     generateAndCompareInstances(
-      of: Dictionary<Int, IdentifiableModel>.self,
+      of: [Int: IdentifiableModel].self,
       using: &randomNumberGenerator
     )
   }
 
   internal func test_generatingEquatableDictionaryAndGeneratingMultipleEquatableDictionaryItems_shouldProduceEqualDictionaries() {
     XCTAssertEqual(
-      Dictionary<Int, EquatableModel>.random(&randomNumberGenerator).keys.map { $0 },
+      [Int: EquatableModel].random(&randomNumberGenerator).keys.map { $0 },
       Int.randoms(&randomNumberGenerator)
     )
   }
@@ -184,3 +185,4 @@ internal class CollectionsRandomableTestCase: XCTestCase {
     )
   }
 }
+// swiftlint:enable implicitly_unwrapped_optional

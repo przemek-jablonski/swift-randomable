@@ -192,7 +192,7 @@ internal class ContextualRandomableMultipleItemsGenerationTestCase: XCTestCase {
 
       enum Context { case context }
       static func random(
-      _ context: Context,
+        _ context: Context,
         _ randomNumberGenerator: inout RandomNumberGenerator
       ) -> Self {
         var systemRandomNumberGenerator: RandomNumberGenerator = SystemRandomNumberGenerator()

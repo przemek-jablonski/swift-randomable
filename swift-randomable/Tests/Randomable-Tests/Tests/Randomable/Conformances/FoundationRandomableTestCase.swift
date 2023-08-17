@@ -1,6 +1,7 @@
 import Randomable
 import XCTest
 
+// swiftlint:disable implicitly_unwrapped_optional
 internal class FoundationRandomableTestCase: XCTestCase {
   internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
@@ -82,3 +83,4 @@ internal class FoundationRandomableTestCase: XCTestCase {
     )
   }
 }
+// swiftlint:enable implicitly_unwrapped_optional

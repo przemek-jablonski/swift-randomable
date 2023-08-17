@@ -1,14 +1,15 @@
 import Randomable
 import XCTest
 
+// swiftlint:disable implicitly_unwrapped_optional
 internal class LoremIpsumTestCase: XCTestCase {
-  var randomNumberGenerator: (any RandomNumberGenerator)!
+  internal var randomNumberGenerator: (any RandomNumberGenerator)!
 
-  override func setUp() async throws {
+  override internal func setUp() async throws {
     self.randomNumberGenerator = try StaticRandomNumberGenerator()
   }
 
-  override func tearDown() async throws {
+  override internal func tearDown() async throws {
     self.randomNumberGenerator = nil
   }
 
@@ -63,7 +64,7 @@ internal class LoremIpsumTestCase: XCTestCase {
 }
 
 extension XCTestCase {
-  func generateAndCompareInstances<R: Equatable>(
+  internal func generateAndCompareInstances<R: Equatable>(
     of instance: (inout any RandomNumberGenerator) -> R,
     using randomNumberGenerator: inout any RandomNumberGenerator,
     assertions: (_ instance1: R, _ instance2: R) -> () = { XCTAssertEqual($0, $1) }
@@ -74,3 +75,4 @@ extension XCTestCase {
     )
   }
 }
+// swiftlint:enable implicitly_unwrapped_optional
