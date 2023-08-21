@@ -1,0 +1,59 @@
+ENV["SCAN_DERIVED_DATA_PATH"] = '~/Library/Developer/Xcode/DerivedData'
+
+############################## LIFECYCLE ##############################
+
+before_all do |lane, options|
+  skip_docs
+  ensure_bundle_exec
+  UI.message 'Options:'
+  UI.message options.keys.sort
+  UI.message 'Environment:'
+  UI.message ENV.keys.sort
+  # set_en_locale()
+  # set_xcode(xcode: options[:xcode])
+end
+
+############################## PUBLIC LANES ##############################
+
+lane :run_unit_tests do |options|
+
+  # if not project = options[:project] then missing_property_error(property_name: 'project', options: options) end
+  # if not scheme = options[:scheme] then missing_property_error(property_name: 'scheme', options: options) end
+  # if not xcode = options[:xcode] then missing_property_error(property_name: 'xcode', options: options) end
+  # if not configuration = options[:configuration] then missing_property_error(property_name: 'configuration', options: options) end
+  
+  # ensure_xcode_version(version: options[:xcode])
+  scan(
+    workspace: 'Casimir.xcworkspace',
+    configuration: 'debug',
+    scheme: 'Casimir',
+    # destination: '{ platform:watchOS Simulator, id:925EA5C9-BC86-41BB-A1FA-60FB46C93751, OS:9.4, name:Apple Watch Ultra (49mm) }',
+    #destination: 'id=925EA5C9-BC86-41BB-A1FA-60FB46C93751',
+    destination: "id=F92E5B4C-3514-475C-BBF6-29E30FDB207F",
+    # sdk: 'appletvos16.4',
+    sdk: 'iphoneos16.4',
+    clean: true,
+    ensure_devices_found: true,
+    code_coverage: true,
+    result_bundle: true,
+    output_types: "", 
+    output_directory: "./.build/results/scan",
+  )
+end
+
+############################## PRIVATE LANES (FUNCTIONS) ##############################
+
+# private_lane :
+
+############################## UTILITIES ##############################
+private_lane :throw_missing_property_error do |options|
+  UI.error "Options:"
+  UI.error options
+  UI.error "Missing property: #{options[:property_name]}"
+  UI.user_error! "Options are missing property '#{options[:property_name]}'. Consider adding the '#{options[:property_name]}:<value>' part to the 'bundle exec fastlane <lane>' command, so that it becomes 'bundle exec fastlane <lane> #{options[:property_name]}:<value>'."
+end
+
+private_lane :throw_missing_env_var_error do |options|
+  UI.message 'https://docs.fastlane.tools/actions/environment_variable/'
+  UI.user_error! "Environment (env var) is missing required environment variable #{options[:property_name]}. Consider adding it to the ENV dictionary."
+end
