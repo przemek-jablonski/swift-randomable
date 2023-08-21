@@ -14,7 +14,10 @@ before_all do |lane, options|
   skip_docs
   ensure_bundle_exec
   print_diagnostic_info
-  # set_xcode(xcode: options[:xcode])
+  xcodes(
+    version: options[:xcode],
+    select_for_current_build_only: true,
+  )
 end
 
 before_each do |lane, options|
@@ -39,13 +42,11 @@ end
 
 desc "Runs tests for the Swift Package that is found in the operating directory. Generates testing report using xcpretty."
 lane :test_swift_package do |options|
+  if not command = options[:command] then missing_property_error(property_name: 'command', options: options) end
+  if not xcode = options[:xcode] then missing_property_error(property_name: 'xcode', options: options) end
 
-  # if not project = options[:project] then missing_property_error(property_name: 'project', options: options) end
-  # if not scheme = options[:scheme] then missing_property_error(property_name: 'scheme', options: options) end
-  # if not xcode = options[:xcode] then missing_property_error(property_name: 'xcode', options: options) end
-  # if not configuration = options[:configuration] then missing_property_error(property_name: 'configuration', options: options) end
-  
-  # ensure_xcode_version(version: options[:xcode])
+  ensure_xcode_version(version: xcode)
+
   spm(
     command: 'test', 
     enable_code_coverage: true, 
