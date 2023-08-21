@@ -33,18 +33,18 @@ jobs:
         xcode: ['Xcode_13.2.1', 'Xcode_14.2', 'Xcode_15.0']
         macos: ['macos-11', 'macos-12', 'macos-13']
         command: ['test']
+    defaults:
+      run:
+        working-directory: ./app
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
     - name: Setup ruby and bundler
       uses: ruby/setup-ruby@v1
-      working-directory: swift-randomable
     - name: Setup non-ruby dependencies (xcodes)
       run: which xcodes || brew install xcodes
-      working-directory: swift-randomable
     - name: Run 'test_swift_package' lane
       uses: maierj/fastlane-action@v3.0.0
-      working-directory: swift-randomable
       with:
         lane: 'test_swift_package'
         options: '{ "xcode": "${{ matrix.xcode }}", "command": ${{ matrix.command }} }'
