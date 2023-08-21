@@ -22,8 +22,8 @@ concurrency:
 
 jobs:
   test_swift_package:
-    name: Unit Testing
-    runs-on: [self-hosted, macOS, ARM64]
+    name: Swift Package testing
+    runs-on: ${{ matrix.macos }}
     strategy:
       fail-fast: false
       # https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
