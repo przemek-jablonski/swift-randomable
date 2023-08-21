@@ -1,0 +1,49 @@
+name: Test Swift Package
+
+# Housekeeping of the `brew` command on Github's virtual runner.
+env:
+   HOMEBREW_NO_INSTALL_CLEANUP: 1
+   
+on:
+  # Any PR event (opened, reopened, updated, assigned) targeted to `main` will trigger the workflow.
+  pull_request:
+    branches: [main]
+  # Workflow will be run nightly at midnight.
+  schedule:
+    - cron: 0 0 * * *
+  # Enables button in the github.com so that workflow can be dispatched manually using the button in the browser.
+  workflow_dispatch:
+
+# Stale / pending workflow runs will be aborted upon branch updates.
+# https://stackoverflow.com/a/72408109/6942800
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test_swift_package:
+    name: Unit Testing
+    runs-on: [self-hosted, macOS, ARM64]
+    strategy:
+      fail-fast: false
+      # https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
+      # https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
+      # https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
+      matrix:
+        xcode: ['Xcode_13.2.1', 'Xcode_14.2', 'Xcode_15.0']
+        macos: ['macos-11', 'macos-12', 'macos-13']
+        command: ['test']
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+    - name: Setup ruby and bundler
+      uses: ruby/setup-ruby@v1
+    - name: Setup non-ruby dependencies (xcodes)
+      run: which xcodes || brew install xcodes
+    - name: Run 'test_swift_package' lane 
+      uses: maierj/fastlane-action@v3.0.0
+      with:
+        lane: 'test_swift_package'
+        options: '{ "xcode": "${{ matrix.xcode }}", "command": ${{ matrix.command }} }'
+        verbose: true
+        

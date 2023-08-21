@@ -1,0 +1,108 @@
+####################### ENVIRONMENT VARIABLES ########################
+
+ENV["SCAN_DERIVED_DATA_PATH"] = '~/Library/Developer/Xcode/DerivedData'
+ENV["FASTLANE_XCODE_LIST_TIMEOUT"] = "180"
+ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "180"
+ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "5"
+FASTLANE_RUN_IDENTIFIER = "Fastlane##{Random.uuid()}"
+LANE_TEMPORARY_KEYCHAIN_NAME = "_temporary##{FASTLANE_RUN_IDENTIFIER}"
+LANE_TEMPORARY_KEYCHAIN_PASSWORD = Random.uuid()
+
+############################## BEFORE ##############################
+
+before_all do |lane, options|
+  skip_docs
+  ensure_bundle_exec
+  print_diagnostic_info
+  xcodes(
+    version: options[:xcode],
+    select_for_current_build_only: true,
+  )
+end
+
+before_each do |lane, options|
+  #
+end
+
+############################### AFTER ###############################
+
+after_all do |lane, options|
+  lane_cleanup
+end
+
+after_each do |lane, options|
+  #
+end
+
+error do |lane, exception|
+  lane_cleanup
+end
+
+########################### PUBLIC LANES ###########################
+
+desc "Runs tests for the Swift Package that is found in the operating directory. Generates testing report using xcpretty."
+lane :test_swift_package do |options|
+  if not command = options[:command] then missing_property_error(property_name: 'command', options: options) end
+  if not xcode = options[:xcode] then missing_property_error(property_name: 'xcode', options: options) end
+
+  ensure_xcode_version(version: xcode)
+
+  spm(
+    command: 'test', 
+    enable_code_coverage: true, 
+    configuration: 'debug', 
+    xcpretty_output: 'simple',
+    xcpretty_args: '--report html',
+    verbose: true
+  )
+end
+
+#################### PRIVATE LANES (FUNCTIONS) ####################
+
+desc "Sets up the machine / VM after given lane / pipeline starts."
+private_lane :lane_setup do |options|
+  # override_simulator_locale
+  # create_lane_temporary_keychain
+end
+
+desc "Cleans up the machine / VM after given lane finished."
+private_lane :lane_cleanup do |options|
+  # reset_simulator_locale
+  # delete_lane_temporary_keychain
+  # shutdown_vm
+end
+
+desc "Prints the known variables, options and env vars for debugging purposes. Might include sensitive data in the output."
+private_lane :print_diagnostic_info do |options|
+  # fastlane's default debugging solution
+  debug
+  UI.message ''
+
+  # prints the environment (local and global constants relevant to the fastlane's run).
+  UI.success 'Diagnostics: ENVIRONMENT:'
+  UI.message '[ENV]:' 
+  ENV.keys.each_with_index { |val, index| UI.message "[#{val}: #{ENV.values[index]}]" }
+  UI.message ''
+
+  # prints the options (optional parameters passed-in into the fastlane, eg. using Github Actions wrapping script).
+  UI.success 'Diagnostics: OPTIONS:'
+  UI.message '[options]:'
+  options.keys.each_with_index { |val, index| UI.message "[#{val}: #{options.values[index]}]" }
+  UI.message ''
+end
+
+########################### UTILITIES ###########################
+
+desc "Force-crashes the pipeline to indicate programmer error (list of passed-in arguments is incomplete or incorrect)."
+private_lane :throw_missing_property_error do |options|
+  UI.error "Options:"
+  UI.error options
+  UI.error "Missing property: #{options[:property_name]}"
+  UI.user_error! "Options are missing property '#{options[:property_name]}'. Consider adding the '#{options[:property_name]}:<value>' part to the 'bundle exec fastlane <lane>' command, so that it becomes 'bundle exec fastlane <lane> #{options[:property_name]}:<value>'."
+end
+
+desc "Force-crashes the pipeline to indicate programmer error (env vars are incomplete)."
+private_lane :throw_missing_env_var_error do |options|
+  UI.message 'https://docs.fastlane.tools/actions/environment_variable/'
+  UI.user_error! "Environment (env var) is missing required environment variable #{options[:property_name]}. Consider adding it to the ENV dictionary or at the top of the Fastfile."
+end
