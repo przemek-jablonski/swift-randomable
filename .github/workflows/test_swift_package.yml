@@ -30,12 +30,9 @@ jobs:
       # https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
       # https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
       matrix:
-        xcode: ['14.2', '15.0']
-        macos: ['macos-12', 'macos-13']
+        xcode: ['14.3.1', '15.0']
+        macos: ['macos-13']
         command: ['test']
-        exclude:
-          - macos: 'macos-12'
-            xcode: '15.0'
     defaults:
       run:
         working-directory: ./swift-randomable
