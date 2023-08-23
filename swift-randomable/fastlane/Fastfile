@@ -11,9 +11,9 @@ LANE_TEMPORARY_KEYCHAIN_PASSWORD = Random.uuid()
 ############################## BEFORE ##############################
 
 before_all do |lane, options|
-  skip_docs
-  ensure_bundle_exec
-  print_diagnostic_info
+  skip_docs()
+  ensure_bundle_exec()
+  print_diagnostic_info(options)
   xcodes(
     version: options[:xcode],
     select_for_current_build_only: true,
@@ -27,7 +27,7 @@ end
 ############################### AFTER ###############################
 
 after_all do |lane, options|
-  lane_cleanup
+  lane_cleanup()
 end
 
 after_each do |lane, options|
@@ -35,7 +35,7 @@ after_each do |lane, options|
 end
 
 error do |lane, exception|
-  lane_cleanup
+  lane_cleanup()
 end
 
 ########################### PUBLIC LANES ###########################
@@ -87,7 +87,7 @@ private_lane :print_diagnostic_info do |options|
   # prints the options (optional parameters passed-in into the fastlane, eg. using Github Actions wrapping script).
   UI.success 'Diagnostics: OPTIONS:'
   UI.message '[options]:'
-  options.keys.each_with_index { |val, index| UI.message "[#{val}: #{options.values[index]}]" }
+  options.keys.each_with_index { |val, index| UI.success "[#{val}: #{options.values[index]}]" }
   UI.message ''
 end
 

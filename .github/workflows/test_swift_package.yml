@@ -22,28 +22,36 @@ concurrency:
 
 jobs:
   test_swift_package:
-    name: Unit Testing
-    runs-on: [self-hosted, macOS, ARM64]
+    name: Swift Package testing
+    runs-on: ${{ matrix.macos }}
     strategy:
       fail-fast: false
       # https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
       # https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
       # https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
       matrix:
-        xcode: ['Xcode_13.2.1', 'Xcode_14.2', 'Xcode_15.0']
-        macos: ['macos-11', 'macos-12', 'macos-13']
+        xcode: ['14.3.1', '15.0']
+        macos: ['macos-13']
         command: ['test']
+    defaults:
+      run:
+        working-directory: ./swift-randomable
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
     - name: Setup ruby and bundler
       uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
     - name: Setup non-ruby dependencies (xcodes)
       run: which xcodes || brew install xcodes
-    - name: Run 'test_swift_package' lane 
+    - name: Install Bundler dependencies
+      run: bundle install
+    - name: Run 'test_swift_package' lane
       uses: maierj/fastlane-action@v3.0.0
       with:
         lane: 'test_swift_package'
-        options: '{ "xcode": "${{ matrix.xcode }}", "command": ${{ matrix.command }} }'
+        options: '{ "xcode": "${{ matrix.xcode }}", "command": "${{ matrix.command }}" }'
         verbose: true
+        subdirectory: './swift-randomable'
         
