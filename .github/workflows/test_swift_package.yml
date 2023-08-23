@@ -58,6 +58,6 @@ jobs:
       uses: maierj/fastlane-action@v3.0.0
       with:
         lane: 'test_swift_package'
-        options: '{ "xcode": "${{ matrix.xcode }}", "command": "${{ matrix.command }}"" }'
+        options: '{ "xcode": "${{ matrix.xcode }}", "command": "${{ matrix.command }}" }'
         verbose: true
         
