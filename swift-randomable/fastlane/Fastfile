@@ -13,7 +13,7 @@ LANE_TEMPORARY_KEYCHAIN_PASSWORD = Random.uuid()
 before_all do |lane, options|
   skip_docs
   ensure_bundle_exec
-  print_diagnostic_info(lane, options)
+  print_diagnostic_info(options)
   xcodes(
     version: options[:xcode],
     select_for_current_build_only: true,
@@ -73,7 +73,7 @@ private_lane :lane_cleanup do |options|
 end
 
 desc "Prints the known variables, options and env vars for debugging purposes. Might include sensitive data in the output."
-private_lane :print_diagnostic_info do |lane, options|
+private_lane :print_diagnostic_info do |options|
   # fastlane's default debugging solution
   debug
   UI.message ''
