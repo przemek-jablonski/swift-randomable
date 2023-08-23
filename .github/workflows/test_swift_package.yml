@@ -54,6 +54,8 @@ jobs:
         ruby-version: '3.0'
     - name: Setup non-ruby dependencies (xcodes)
       run: which xcodes || brew install xcodes
+    - name: Install Bundler dependencies
+      run: bundle install
     - name: Run 'test_swift_package' lane
       uses: maierj/fastlane-action@v3.0.0
       with:
