@@ -42,7 +42,7 @@ jobs:
             xcode: ['13.2.1']
     defaults:
       run:
-        working-directory: ./app
+        working-directory: ./swift-randomable
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
