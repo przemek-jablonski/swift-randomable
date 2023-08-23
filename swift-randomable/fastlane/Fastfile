@@ -87,6 +87,8 @@ private_lane :print_diagnostic_info do |options|
   # prints the options (optional parameters passed-in into the fastlane, eg. using Github Actions wrapping script).
   UI.success 'Diagnostics: OPTIONS:'
   UI.message '[options]:'
+  UI.message options
+  UI.message '[options]:'
   options.keys.each_with_index { |val, index| UI.message "[#{val}: #{options.values[index]}]" }
   UI.message ''
 end

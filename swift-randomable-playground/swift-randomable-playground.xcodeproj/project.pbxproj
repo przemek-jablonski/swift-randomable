@@ -14,6 +14,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F6B40BE2A969664002478F3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = "../swift-randomable/.gitignore"; sourceTree = "<group>"; };
+		1F6B40C02A969664002478F3 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = "../swift-randomable/Gemfile"; sourceTree = "<group>"; };
+		1F6B40C12A969664002478F3 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile.lock; path = "../swift-randomable/Gemfile.lock"; sourceTree = "<group>"; };
+		1F6B40C22A96967F002478F3 /* test_swift_package.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = test_swift_package.yml; path = ../.github/workflows/test_swift_package.yml; sourceTree = "<group>"; };
+		1F6B40C32A9696B0002478F3 /* Fastfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Fastfile; path = "../swift-randomable/fastlane/Fastfile"; sourceTree = "<group>"; };
 		1FB5F2142A891F5B0080FC30 /* swift-randomable-playground.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = "swift-randomable-playground.xctestplan"; path = "../swift-randomable-playground.xctestplan"; sourceTree = "<group>"; };
 		1FC083652A7FA99400DA0790 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		1FC083682A7FC0FF00DA0790 /* TestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
@@ -46,6 +51,11 @@
 		1FC0F3E02A7E7B76007E7A22 = {
 			isa = PBXGroup;
 			children = (
+				1F6B40C32A9696B0002478F3 /* Fastfile */,
+				1F6B40C22A96967F002478F3 /* test_swift_package.yml */,
+				1F6B40BE2A969664002478F3 /* .gitignore */,
+				1F6B40C02A969664002478F3 /* Gemfile */,
+				1F6B40C12A969664002478F3 /* Gemfile.lock */,
 				1FB5F2142A891F5B0080FC30 /* swift-randomable-playground.xctestplan */,
 				1FC083652A7FA99400DA0790 /* .swiftlint.yml */,
 				1FC3378E2A7E7DE600225AF4 /* swift-randomable */,
