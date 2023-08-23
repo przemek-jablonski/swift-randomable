@@ -34,12 +34,14 @@ jobs:
         macos: ['macos-11', 'macos-12', 'macos-13']
         command: ['test']
         exclude:
-          - macos: ['macos-11']
-            xcode: ['14.2', '15.0']
-          - macos: ['macos-12']
-            xcode: ['15.0']
-          - macos: ['macos-13']
-            xcode: ['13.2.1']
+          - macos: 'macos-11'
+            xcode: '14.2'
+          - macos: 'macos-11'
+            xcode: '15.0'
+          - macos: 'macos-12'
+            xcode: '15.0'
+          - macos: 'macos-13'
+            xcode: '13.2.1'
     defaults:
       run:
         working-directory: ./swift-randomable
@@ -56,6 +58,6 @@ jobs:
       uses: maierj/fastlane-action@v3.0.0
       with:
         lane: 'test_swift_package'
-        options: '{ "xcode": "${{ matrix.xcode }}", "command": ${{ matrix.command }} }'
+        options: '{ "xcode": "${{ matrix.xcode }}", "command": "${{ matrix.command }}"" }'
         verbose: true
         
