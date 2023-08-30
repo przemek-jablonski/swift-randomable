@@ -33,9 +33,9 @@ jobs:
         xcode: ['14.3.1', '15.0']
         macos: ['macos-13']
         command: ['test']
-    defaults:
-      run:
-        working-directory: ./swift-randomable
+#    defaults:
+#      run:
+#        working-directory: ./swift-randomable
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2

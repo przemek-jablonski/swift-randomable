@@ -26,6 +26,7 @@
 		1FD7D2872A9FA3EA0027B6A7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		1FD7D2882A9FA3EB0027B6A7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1FD7D28D2A9FA4DA0027B6A7 /* swift-randomable-playground.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "swift-randomable-playground.xctestplan"; sourceTree = "<group>"; };
+		1FD7D28E2A9FA6C80027B6A7 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; name = .github; path = ../.github; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 		1FC0F3E02A7E7B76007E7A22 = {
 			isa = PBXGroup;
 			children = (
+				1FD7D28E2A9FA6C80027B6A7 /* .github */,
 				1FD7D2872A9FA3EA0027B6A7 /* .gitignore */,
 				1FD7D2862A9FA3EA0027B6A7 /* LICENSE */,
 				1FD7D2882A9FA3EB0027B6A7 /* README.md */,
