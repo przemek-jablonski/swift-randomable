@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "D9127104-C531-4BED-B7E3-968F847BDF03",
+      "id" : "6E0B97E5-D5CB-4F80-88C0-352AF2D31C33",
       "name" : "Configuration 1",
       "options" : {
 
@@ -15,7 +15,7 @@
     {
       "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:..\/swift-randomable",
+        "containerPath" : "container:..",
         "identifier" : "Randomable-Tests",
         "name" : "Randomable-Tests"
       }
