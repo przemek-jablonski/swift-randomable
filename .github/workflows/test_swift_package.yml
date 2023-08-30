@@ -53,5 +53,5 @@ jobs:
         lane: 'test_swift_package'
         options: '{ "xcode": "${{ matrix.xcode }}", "command": "${{ matrix.command }}" }'
         verbose: true
-        subdirectory: './swift-randomable'
+#        subdirectory: './swift-randomable'
         
