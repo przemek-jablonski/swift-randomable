@@ -33,9 +33,6 @@ jobs:
         xcode: ['14.3.1', '15.0']
         macos: ['macos-13']
         command: ['test']
-#    defaults:
-#      run:
-#        working-directory: ./swift-randomable
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
@@ -53,5 +50,4 @@ jobs:
         lane: 'test_swift_package'
         options: '{ "xcode": "${{ matrix.xcode }}", "command": "${{ matrix.command }}" }'
         verbose: true
-#        subdirectory: './swift-randomable'
         
