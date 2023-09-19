@@ -70,7 +70,7 @@ String.random(.businessTitle, &TestSpecificRandomNumberGenerator())
 
 - Add randomization to the models that you own:
 ```swift
-struct TestModelA { /* ... */  }
+struct TestModelA { /* ... */ }
 
 extension TestModelA: Randomable {
     static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
@@ -85,6 +85,8 @@ extension TestModelA: Randomable {
         )
     }
 }
+
+struct TestModelB { /* ... */ }
 
 extension TestModelB: Randomable {
     static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
