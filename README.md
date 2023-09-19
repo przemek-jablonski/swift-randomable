@@ -1,8 +1,10 @@
 # swift-randomable
 Randomization tools for your Swift models.
 
-✅  Unified and testable randomness API
+✅ Unified and testable randomness API
+
 ✅ Support for standard `Foundation` and non-`Foundation` types
+
 ✅ All Apple platforms (iOS, macOS, watchOS, tvOS, visionOS) 
 
 #### Features:
